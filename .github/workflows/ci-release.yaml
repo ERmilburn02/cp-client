@@ -1,5 +1,8 @@
 name: CI Release
-on: release
+on:
+    release:
+        types: 
+            created
 
 permissions: write-all
 
@@ -22,4 +25,4 @@ jobs:
           run: pnpm install --frozen-lockfile
 
         - name: Publish
-          run: pnpm electron-builder --win --publish
+          run: pnpm electron-builder --win
