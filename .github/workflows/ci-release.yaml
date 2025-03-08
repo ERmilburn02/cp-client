@@ -1,0 +1,27 @@
+name: CI Release
+on: release
+
+permissions: write-all
+
+jobs:
+  release-windows:
+    runs-on: windows-latest
+    steps:
+        - uses: actions/checkout@v4
+
+        - name: Install pnpm
+          uses: pnpm/action-setup@v4
+          with:
+              version: 10
+
+        - name: Use Node.js 22
+          uses: actions/setup-node@v4
+          with:
+            node-version: "22.x"
+            cache: 'pnpm'
+
+        - name: Install dependencies
+          run: pnpm install --frozen-lockfile
+
+        - name: Publish
+          run: pnpm electron-builder --win --publish
