@@ -1,0 +1,4 @@
+provider: github
+owner: ERmilburn02
+repo: cp-client
+updaterCacheDirName: cp-client-updater
