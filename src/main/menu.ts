@@ -1,5 +1,5 @@
 import { is } from '@electron-toolkit/utils'
-import { app, Menu, type MenuItem, type MenuItemConstructorOptions } from 'electron'
+import { app, dialog, Menu, type MenuItem, type MenuItemConstructorOptions } from 'electron'
 import { join } from 'path'
 
 // const isMac = process.platform === 'darwin'
@@ -19,6 +19,41 @@ const menuTemplate: Array<MenuItemConstructorOptions | MenuItem> = [
           } else {
             browserWindow.loadFile(join(__dirname, '../renderer/index.html'))
           }
+        }
+      },
+      {
+        label: 'Clear Cache',
+        click(_, browserWindow): void {
+          if (!browserWindow) {
+            throw new Error('Menu clicked without a browser window!')
+          }
+
+          browserWindow.webContents.session.clearCache()
+        }
+      },
+      {
+        label: 'Toggle Developer Tools',
+        click(_, browserWindow): void {
+          if (!browserWindow) {
+            throw new Error('Menu clicked without a browser window!')
+          }
+
+          if (browserWindow.webContents.isDevToolsOpened()) {
+            browserWindow.webContents.closeDevTools()
+            return
+          }
+
+          const confirmDialog = dialog.showMessageBoxSync(browserWindow, {
+            title: 'Do you really want to open dev tools?',
+            message: 'The dev tools may contain sensitive information about your current session.',
+            buttons: ['Yes', 'No']
+          })
+
+          if (confirmDialog !== 0) {
+            return
+          }
+
+          browserWindow.webContents.openDevTools()
         }
       },
       { type: 'separator' },
