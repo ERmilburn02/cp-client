@@ -28,6 +28,6 @@ jobs:
           run: pnpm build
 
         - name: Publish
-          run: pnpm electron-builder --win
+          run: pnpm electron-builder --win --publish always
           env:
             GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
