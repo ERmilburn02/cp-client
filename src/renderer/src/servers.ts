@@ -6,6 +6,11 @@ export type ServerInfo = {
 
 export const servers: Readonly<Array<ServerInfo>> = [
   {
+    name: 'New Club Penguin',
+    url: 'https://newcp.net/en-US/game',
+    logo: 'https://newcp.net/logo.png'
+  },
+  {
     name: 'Localhost (Vanilla)',
     url: 'http://play.localhost/',
     logo: null
