@@ -15,9 +15,9 @@ export function ServerButton({ server }: { server: ServerInfo }): JSX.Element {
             showFallback ? 'bg-muted' : ''
           }`}
         >
-          {!showFallback ? (
+          {!showFallback && server.logo ? (
             <img
-              src={server.logo!}
+              src={server.logo}
               alt={`${server.name} logo`}
               className="h-full w-full object-contain"
               onError={() => setImgError(true)}
