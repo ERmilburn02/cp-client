@@ -5,7 +5,7 @@ import { servers } from './servers'
 function App(): JSX.Element {
   return (
     <>
-      <div className="grid grid-cols-4 space-x-2 place-items-center">
+      <div className="grid grid-cols-4 gap-2 place-items-center m-2">
         {servers.map((server, i) => (
           <ServerButton key={i} server={server} />
         ))}

@@ -1,7 +1,7 @@
 {
   "name": "cp-client",
   "productName": "CP Client",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Client for playing a silly penguin game",
   "main": "./out/main/index.js",
   "author": "example.com",
